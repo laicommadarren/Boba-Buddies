@@ -1,0 +1,125 @@
+* {
+	margin:0;
+	padding:0;
+}
+a:link, a:visited {
+	color: #603101;
+}
+a:hover {
+	color: #BF8445; 
+}
+
+
+.homeButton {
+	position:fixed;
+	top:0px;
+}
+.homeIcon {
+	width: 55px;
+	margin-top:5px;
+}
+.loggedInDisplay {
+  	text-align:right;
+  	position:fixed;
+  	top:5px;
+  	right:10px;
+  	font-family: system-ui, sans-serif;
+  	font-weight:600;
+  	font-size:13px;
+}
+h1 {
+	font-family: "Comic Sans MS", sans-serif;
+}
+.title {
+  		text-align:center;
+  		margin-bottom:10px;
+  		margin-top:8vh;
+  	}
+h3, h4 {
+	text-align:center;
+}
+h3 {
+	font-family:"Helvetica", sans-serif;
+	margin-bottom:15px;
+}
+.navContainer {
+	display:flex;
+	justify-content:center;
+	margin:auto;
+	margin-bottom:15px;
+}
+.nav {
+	display:flex;
+	/* justify-content:space-between; */
+	width:100%;
+}
+.nav a {
+	width:33.33%;
+}
+.nav button {
+  background-color: #603101;
+  border: 1px solid #dfc2a2;
+  color: #dfc2a2;
+  padding: 5px 6px;
+  width:100%;
+  cursor: pointer;
+  float: left;
+  font-weight:bold;
+}
+
+.nav button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.nav:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.nav button:hover {
+  background-color: #dfc2a2;
+  color: #603101;
+  transition:.3s;
+}
+
+
+
+.eventsContainer {
+	display:flex;
+	justify-content:space-between;
+	margin-left:2vw;
+	margin-right:2vw;
+	font-family: "Helvetica", sans-serif;
+}
+.eventColumn {
+	width: 43vw;
+	border:1px solid black;
+	border-radius:10px;
+	padding:8px;
+	font-size:15px;
+	background-color:#dfc2a2;
+}
+.eventBox {
+	margin-top:5px;
+	margin-bottom:5px;
+	padding-bottom:5px;
+	padding-top:5px;
+	border-bottom:2px solid gray;
+	font-size:14px;
+	
+}
+.eventColumnHeader {
+	padding-bottom:5px;
+	border-bottom:2px solid gray;
+}
+.eventTitle {
+	font-weight:600;
+	margin-bottom:5px;
+}
+.eventTime, .eventCity {
+	font-style:italic;
+	margin-bottom:5px;
+}

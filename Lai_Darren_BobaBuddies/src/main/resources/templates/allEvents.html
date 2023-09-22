@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/allEvents.css}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</head>
+<body>
+	<!--  Home Button -->
+	<div class="homeButton">
+		<a href="/dashboard">
+		<img class="homeIcon" src="https://cdn-icons-png.flaticon.com/512/3081/3081162.png" 
+			alt="https://www.flaticon.com/free-icons/bubble-tea iconixar - Flaticon"/>
+		</a>
+	</div>
+	<!-- logged in display -->
+	<div class="loggedInDisplay" th:if="${session.userId}">
+		<p th:text="|${session.userName}|"></p>
+		<a th:href="'/user/' + ${session.userId}">your profile</a>
+		<div>
+			<a href="/logout">sign out</a>
+		</div>
+	</div>
+	<div class="loggedOutMessage" th:unless="${session.userId}"><a  href="/">log in or register</a> to access all site features</div>
+	<!-- Title -->
+	<div class="title">
+		<h1>Boba Buddies</h1>
+	</div>
+	<!-- navigation bar -->
+	<div th:if="${session.userId}" class="navContainer">
+		<div class="nav">
+			<a href="/events/all/1"><button>all events</button></a>
+			<a th:href="'/events/user/' + ${session.userId}"><button>your events</button></a>
+			<a href="/events/new"><button>(+) create event</button></a>
+		</div>
+	</div>
+	<h3 th:text="|All Events (page ${pageIndex})|"></h3>
+	<div class="pagination">
+		<div class="nav">
+			<a th:if="${totalPages == 1}" th:each="index: ${#numbers.sequence(1,1)}" 
+				th:href="@{'/events/all/' + ${index}}" >
+				<button class="onlyOnePage" th:text="${index}"></button>
+			</a>
+			<a th:if="${totalPages > 1}" th:each="index: ${#numbers.sequence(1,1)}" 
+				th:href="@{'/events/all/' + ${index}}" >
+				<button class="pageOneButton" th:text="${index}"></button>
+			</a>
+			<a th:if="${totalPages > 2}" th:each="index: ${#numbers.sequence(2, totalPages - 1)}" 
+				th:href="@{'/events/all/' + ${index}}" >
+				<button th:text="${index}"></button>
+			</a>
+			<a th:if="${totalPages >= 2}" th:each="index: ${#numbers.sequence(totalPages,totalPages)}" 
+				th:href="@{'/events/all/' + ${index}}" >
+				<button class="lastPageButton" th:text="${index}"></button>
+			</a>
+		</div>
+	</div>
+	<div class="eventsContainer">
+		<div class="eventColumn">
+			<div class="eventBox" th:each="event: ${events}">
+				<img class="eventImage" th:src="${event.location.imageUrl}"/>
+				<div class="eventText">
+					<p class="eventTitle" th:text="${event.name}"></p>
+					<p th:text="${#temporals.format(event.dateTime, 'MMM dd, yyyy (EEEE)')}"></p>
+					<p class="eventTime" th:text="${#temporals.format(event.dateTime, 'h:mm a')} + ' - ' + ${#dates.format(event.endTime, 'h:mm a')}"></p>
+					<p th:text="${event.location.name}"></p>
+					<p class="eventCity" th:text="${event.location.city}"></p>
+					<p th:text="${event.user.id == session.userId} ? 'You are hosting' : 'hosted by: ' +
+						${event.user.firstName} + ' ' + ${#strings.substring(event.user.lastName, 0, 1)} + '.'" />
+					<a th:href="@{'/events/' + ${event.id}}">view event</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

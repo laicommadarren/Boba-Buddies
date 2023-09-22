@@ -1,0 +1,304 @@
+* {
+	margin:0;
+	padding:0;
+}
+a:link, a:visited {
+	color: #603101;
+}
+a:hover {
+	color: #BF8445; 
+}
+
+.homeButton {
+	position:fixed;
+	top:0px;
+}
+.homeIcon {
+	width: 55px;
+	margin-top:5px;
+}
+.loggedInDisplay {
+  	text-align:right;
+  	position:fixed;
+  	top:5px;
+  	right:10px;
+  	font-family: system-ui, sans-serif;
+  	font-weight:600;
+  	font-size:13px;
+}
+.loggedOutMessage {
+	text-align:right;
+  	position:fixed;
+  	top:5px;
+  	right:10px;
+  	font-family: system-ui, sans-serif;
+  	font-weight:600;
+  	font-size:13px;
+}
+h1 {
+	font-family: "Comic Sans MS", sans-serif;
+}
+.title {
+  		text-align:center;
+  		margin-bottom:10px;
+  		margin-top:8vh;
+  	}
+.eventHeader {
+	display:flex;
+	justify-content: space-between;
+}
+h3 {
+	font-family:"Helvetica", sans-serif;
+	margin-bottom:10px;
+	text-align:center;
+}
+.navContainer {
+	display:flex;
+	justify-content:center;
+	margin:auto;
+	margin-bottom:15px;
+}
+.nav, .loggedOutNav {
+	display:flex;
+	/* justify-content:space-between; */
+	width:100%;
+}
+.loggedOutNav {
+	justify-content:center;
+	margin-bottom:15px;
+}
+.nav a, .loggedOutNav a {
+	width:33.33%;
+}
+.nav button, .loggedOutNav button {
+  background-color: #603101;
+  border: 1px solid #dfc2a2;
+  color: #dfc2a2;
+  padding: 5px 6px;
+  width:100%;
+  cursor: pointer;
+  float: left;
+  font-weight:bold;
+}
+.nav button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.nav:after, .loggedOutNav:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.nav button:hover, .loggedOutNav button:hover {
+  background-color: #dfc2a2;
+  color: #603101;
+  transition:0.3s;
+}
+.flexContainer {
+	display:flex;
+	justify-content:flex-start;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+.container {
+	padding:10px 10px 0px 10px;
+	display:flex;
+	justify-content:space-between;
+	width:500px;
+	max-width:92vw;
+	margin:auto;
+	font-family: "Helvetica", sans-serif;
+	border:1px solid black;
+	border-radius:10px;
+	background-color:#dfc2a2;
+}
+.eventLeft {
+	padding:8px;
+	font-size:15px;
+}
+.eventTitle {
+	font-weight:600;
+	margin-bottom:5px;
+}
+.eventTime, .eventCity {
+	font-style:italic;
+	margin-bottom:5px;
+}
+.linkButton {
+	text-decoration: none;
+}
+.yelpButton, .googleMapsButton {
+	background-color:white;
+	border-radius:10px;
+	padding:5px 10px;
+	display:flex;
+	align-items:center;
+}
+.googleMapsButton {
+	margin-left:10px;
+}
+.yelpButton:hover, .googleMapsButton:hover {
+	background-color:lightgray;
+}
+.yelpIcon, .googleMapsIcon {
+	width:15px;
+	margin-right:5px;
+}
+.googleMapsIcon {
+	width:10px;
+}
+.eventHost {
+	font-weight:bold;
+}
+.descriptionHeader {
+	margin-top:10px;
+	font-weight:bold;
+}
+.description {
+	height:9vh;
+	overflow:scroll;
+}
+.editButtonContainer {
+	display:flex;
+	justify-content:center;
+}
+.editButton, .joinButton {
+	align-items: center;
+	background-color: #007FFF;
+	border: 2px solid #007FFF;
+	border-radius: 100px;
+	box-sizing: border-box;
+	color: white;
+	margin-bottom:10px;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto,
+		"Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans",
+		Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 20px;
+	max-width: 480px;
+	min-height: 30px;
+	min-width: 0px;
+	overflow: hidden;
+	padding: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: center;
+	touch-action: manipulation;
+	transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+		box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s
+		cubic-bezier(0.4, 0, 0.2, 1) 0s;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
+}
+.joinButton {
+	background-color:#03C03C;
+	border:#03C03C;
+}
+.editButton:hover, .editButton:focus {
+	background-color:white;
+	color:#007FFF;
+	text-decoration: none;
+	transition-duration: 0.3s;
+}
+.joinButton:hover, .joinButton:focus {
+	background-color:white;
+	color:#03C03C;
+	text-decoration: none;
+	transition-duration: 0.3s;
+}
+.locationImage {
+	border-radius:10px;
+	border:1px solid black;
+}
+.attending {
+	font-size:15px;
+}
+.attendingHeader {
+	font-weight:bold;
+	margin-bottom:3px;
+	text-align:center;
+}
+.attendingBox {
+	border-top:2px solid black;
+	height:10vh;
+	overflow:scroll;
+}
+.attendees {
+	margin-top:3px;
+}
+.commentSectionContainer {
+	display:flex;
+	justify-content: center;
+	width:400px;
+	max-width:92vw;
+	border:1px solid black;
+	border-radius: 5px 5px 0 0;
+	margin:auto;
+	margin-top: 5px;
+	background-color: #BF8445;
+}
+.commentSection {
+	width:100%;
+	margin:auto;
+	height:23vh;
+	overflow:scroll;
+	padding:5px 5px 0 5px;
+}
+.commentBox {
+	background-color: #dfc2a2;
+	
+}
+.comment {
+	border:1px solid black;
+	display:flex;
+	padding:2px;
+	justify-content:space-between;
+}
+.commenterName {
+	width:30%;
+	display:flex;
+	justify-content:right;
+	font-weight:bold;
+}
+.commenterComment {
+	width:65%;
+}
+.addCommentContainer {
+	width:92vw;
+	display:flex;
+	justify-content:center;
+	margin:auto;
+}
+.addCommentInput {
+	width:400px;
+	max-width:92vw;
+}
+.submit {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+.submitCommentButton {
+	background-color: #987654;
+	color: white;
+	padding:2px 5px 2px 5px;
+	border-radius:5px;
+}
+.submitButtonAndErrorContainer {
+	display:flex;
+	justify-content:flex-start;
+}
+.formError {
+	color: #F40009;
+	margin-left:10px;
+}
+

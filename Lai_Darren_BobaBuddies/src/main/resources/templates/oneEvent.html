@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/oneEvent.css}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</head>
+<style>
+	img {
+		width:120px;
+	}
+	
+</style>
+
+<body>
+	<div class="homeButton">
+		<a href="/dashboard">
+		<img class="homeIcon" src="https://cdn-icons-png.flaticon.com/512/3081/3081162.png" 
+			alt="https://www.flaticon.com/free-icons/bubble-tea iconixar - Flaticon"/>
+		</a>
+	</div>
+	<!-- logged in display -->
+	<div class="loggedInDisplay" th:if="${session.userId}">
+		<p th:text="|${session.userName}|"></p>
+		<a th:href="'/user/' + ${session.userId}">your profile</a>
+		<div>
+			<a href="/logout">sign out</a>
+		</div>
+	</div>
+	<div class="loggedOutMessage" th:unless="${session.userId}"><a  href="/">log in or register</a> to access all site features</div>
+	<!-- Title -->
+	<div class="title">
+		<h1>Boba Buddies</h1>
+	</div>
+	<!-- navigation bar -->
+	<div th:if="${session.userId != null}" class="navContainer">
+		<div class="nav">
+			<a href="/events/all/1"><button>all events</button></a>
+			<a th:href="'/events/user/' + ${session.userId}"><button>your events</button></a>
+			<a href="/events/new"><button>(+) create event</button></a>
+		</div>
+	</div>
+	<div th:if="${session.userId == null}">
+		<div class="loggedOutNav">
+			<a href="/events/all/1"><button>all events</button></a>
+		</div>
+	</div>
+	<div class="container">
+		<div class="eventLeft">
+			<h3 th:text="${event.name}"></h3>
+			<p th:text="${#temporals.format(event.dateTime, 'MMM dd, yyyy (EEEE)')}"></p>
+			<p class="eventTime" th:text="${#temporals.format(event.dateTime, 'h:mm a')} + ' - ' + ${#dates.format(event.endTime, 'h:mm a')}"></p>
+			<p th:text="${event.location.name}"></p>
+			<p class="eventCity" th:text="${event.location.city}"></p>
+			<div class="flexContainer">
+				<a class="linkButton" th:href="|${event.location.yelpLink}|">
+					<button class="yelpButton">
+						<img class="yelpIcon" src="https://cdn-icons-png.flaticon.com/512/168/168812.png"
+							alt="yelp icon"/>Yelp
+					</button>
+				</a>
+				<a class="linkButton" th:href="|https://www.google.com/maps/place/${event.location.address}|">
+					<button class="googleMapsButton">
+						<img class="googleMapsIcon"
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Google_Maps_icon_%282020%29.svg/836px-Google_Maps_icon_%282020%29.svg.png?20200218211225"
+							alt="google maps icon"/>get directions
+					</button>
+				</a>
+			</div>
+			<div class="eventHost">
+				<p th:if="${event.user.id == session.userId}">You are hosting</p>
+				<div th:if="${event.user.id != session.userId and session.userId != null}">
+					hosted by <a th:href="|/user/${event.user.id}|" th:text="|${event.user.firstName} ${#strings.substring(event.user.lastName, 0, 1)}.|"></a>
+				</div>
+				<p th:if="${session.userId == null}" th:text="|hosted by ${event.user.firstName} ${#strings.substring(event.user.lastName, 0, 1)}.|"></p>
+			</div>
+			<p class="descriptionHeader">event description:</p>
+			<div class="description">
+				<p th:text="${event.description}"></p>
+			</div>
+			
+		</div>
+		<div>
+			<!--  if the logged in user matches the event's host, allow editing -->
+			<div class="editButtonContainer" th:if="${event.user.id == session.userId}">
+				<a th:href="@{'/events/' + ${event.id} + '/edit'}">
+					<button class="editButton">Edit</button>
+				</a>
+			</div>
+			<!--  if the user exists in event, do not show join -->
+			<div class="editButtonContainer" th:if="${eventService.checkUserInEvent(event.id,session.userId) == false and session.userId != null}">
+				<form th:action="@{'/events/' + ${event.id} + '/join'}" th:object="${eventAdd}" method="post">
+					<input class="joinButton" type="submit" value="Join Event">
+				</form>
+			</div>
+			<img class="locationImage" th:src="${event.location.imageUrl}" alt="picture of restaurant">
+			<div class="attending">	
+				<p class="attendingHeader" th:text="'Attending (' + ${event.users.size()} + ') :'"></p>
+				<div class="attendingBox">
+					<div class="attendees" th:each="user: ${event.users}">
+						<p th:if="${user.id == session.userId}" th:text="|${user.firstName} ${#strings.substring(user.lastName, 0, 1)}. (You)|"></p>
+						<a th:href="|/user/${user.id}|" th:if="${user.id != session.userId and session.userId != null}" 
+						th:text="|${user.firstName} ${#strings.substring(user.lastName, 0, 1)}.|"></a>
+						<p th:unless="${session.userId}" th:text="|${user.firstName} ${#strings.substring(user.lastName, 0, 1)}.|"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:if="${eventService.checkUserInEvent(event.id,session.userId)}" class="commentSectionContainer">
+		<div class="commentSection">
+			<div class="commentBox" th:each="comment : ${event.comments}">
+				<div class="comment">
+					<div class="commenterName">
+						<p th:if="${comment.user.id != session.userId}"
+						th:text="|${comment.user.firstName} ${#strings.substring(comment.user.lastName, 0, 1)}:|"></p>
+						<p th:if="${comment.user.id == session.userId}"
+						th:text="|You:|"></p>
+					</div>
+					<div class="commenterComment">
+						<p th:text=${comment.message}></p>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="addCommentContainer">
+		<div th:if="${eventService.checkUserInEvent(event.id,session.userId)}">
+			<form th:action="@{'/comments/' + ${event.id} + '/new'}" th:object="${comment}" method="post">
+				<input type="hidden" name="user" id="user" th:value="${session.userId}"/>
+				<input type="hidden" name="event" id="event" th:value="${event.id}"/>
+				<textarea class="addCommentInput" th:field="*{message}" id="message" placeholder="Type comment here"></textarea>
+				<div class="submitButtonAndErrorContainer">
+					<input class="submitCommentButton" type="submit" value="Send">
+					<div class="formError" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

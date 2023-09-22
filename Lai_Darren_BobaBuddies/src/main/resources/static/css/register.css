@@ -1,0 +1,220 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a:link, a:visited {
+	color: #603101;
+}
+a:hover {
+	color: #BF8445; 
+}
+.homeButton {
+	position: fixed;
+	top: 0px;
+}
+
+.homeIcon {
+	width: 55px;
+	margin-top: 5px;
+}
+
+.loggedInDisplay {
+	text-align: right;
+	position: fixed;
+	top: 5px;
+	right: 10px;
+	font-family: system-ui, sans-serif;
+	font-weight: 600;
+	font-size: 13px;
+}
+.sallyContainer {
+	display:flex;
+	justify-content:center;
+	margin-top: 8vh;
+}
+.sallyImage {
+	
+	max-width:300px;
+	margin:auto;
+}
+h1 {
+	font-family: "Comic Sans MS", sans-serif;
+}
+
+.flexDiv {
+	display: flex;
+	justify-content: right;
+}
+
+.adjustPTag {
+	position: relative;
+	right: 10px;
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.titleMessage {
+	margin-top:5px;
+	font-family: "Helvetica", sans-serif;
+	font-size:16px;
+	margin-bottom:15px;
+}
+
+.regLogButtonContainer {
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	align-items: center;
+	width: 170px;
+}
+
+.or {
+	font-family: "Palatino", serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.regLogButton {
+	appearance: none;
+	background-color: #C4A484;
+	border: 1px solid #924b03;
+	border-radius: 6px;
+	box-sizing: border-box;
+	color: black;
+	cursor: pointer;
+	display: inline-block;
+	font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 20px;
+	list-style: none;
+	padding: 3px 10px;
+	position: relative;
+	transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	vertical-align: middle;
+	white-space: nowrap;
+	word-wrap: break-word;
+}
+
+.regLogButton:hover {
+	background-color: #987654;
+	text-decoration: none;
+	transition-duration: 0.1s;
+}
+
+.extraMessage {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: system-ui, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+.extraMessage:link, .extraMessage:visited {
+	color:#924b03;
+}
+
+.submit {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+
+.submitButton {
+	border-radius: 100%;
+}
+
+#registerForm, #loginForm {
+	border: solid 2px darkgray;
+	border-radius: 9px;
+	padding-top: 2vh;
+	padding-bottom: 0;
+	display:none;
+	width: 92vw;
+	margin: auto;
+	background-color:#dfc2a2;
+}
+#registerForm {
+	display:block;
+}
+.formSection {
+	margin-bottom: 8px;
+}
+
+.formDiv, .formError {
+	width: 80%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: system-ui, sans-serif;
+}
+
+.formError {
+	color: #F40009;
+	display: flex;
+	justify-content: right;
+	text-align: right;
+	font-size: 13px;
+	font-weight: 500;
+	font-family: system-ui, sans-serif;
+}
+
+label {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.textInput {
+	height: 20px;
+}
+
+.submitButton {
+	align-items: center;
+	background-color:#987654;
+	border: 2px solid #BF8445;
+	border-radius: 100px;
+	box-sizing: border-box;
+	color: white;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto,
+		"Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans",
+		Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 20px;
+	max-width: 480px;
+	min-height: 30px;
+	min-width: 0px;
+	overflow: hidden;
+	padding: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: center;
+	touch-action: manipulation;
+	transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+		box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s
+		cubic-bezier(0.4, 0, 0.2, 1) 0s;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
+}
+
+.submitButton:hover, .submitButton:focus {
+	color: white;
+	background-color:#BF8445;
+	text-decoration: none;
+	transition-duration: 0.1s;
+}

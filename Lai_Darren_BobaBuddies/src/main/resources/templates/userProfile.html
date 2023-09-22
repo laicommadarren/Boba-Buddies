@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/userProfile.css}" />
+</head>
+
+<body>
+	<!--  Home Button -->
+	<div class="homeButton">
+		<a href="/dashboard">
+		<img class="homeIcon" src="https://cdn-icons-png.flaticon.com/512/3081/3081162.png" 
+			alt="https://www.flaticon.com/free-icons/bubble-tea iconixar - Flaticon"/>
+		</a>
+	</div>
+	<!-- logged in display -->
+	<div class="loggedInDisplay" th:if="${session.userId}">
+		<p th:text="|${session.userName}|"></p>
+		<a th:href="'/user/' + ${session.userId}">your profile</a>
+		<div>
+			<a href="/logout">sign out</a>
+		</div>
+	</div>
+	<div class="loggedOutMessage" th:unless="${session.userId}"><a  href="/">log in or register</a> to access all site features</div>
+	<!-- Title -->
+	<div class="title">
+		<h1>Boba Buddies</h1>
+	</div>
+	<!-- navigation bar -->
+	<div class="navContainer">
+		<div class="nav">
+			<a href="/events/all/1"><button>all events</button></a>
+			<a th:href="'/events/user/' + ${session.userId}"><button>your events</button></a>
+			<a href="/events/new"><button>(+) create event</button></a>
+		</div>
+	</div>
+	<h3 th:text="${session.userId == thisUser.id} ? 'Your Profile' : |${thisUser.firstName} ${#strings.substring(thisUser.lastName, 0, 1)}.'s profile|"></h3>
+	<div class="followButtonContainer">
+		<div th:if="${session.userId != thisUser.id and userService.isFollowingUser(session.userId,thisUser.id) == false}">
+			<form th:action="@{'/user/' + ${thisUser.id} + '/follow'}" method="post" th:object="${friendship}">
+				<input class="followUserButton" type="submit" value="follow user"></input>
+			</form>
+		</div>
+	</div>
+	<div class="followingUserContainer" th:if="${userService.isFollowingUser(session.userId,thisUser.id)}">
+		<p th:text="|You are following ${thisUser.firstName}!|"></p>
+		<a th:href="|/user/${session.userId}|">View all users you are following</a>
+	</div>
+	
+	<div class="container" th:if="${session.userId == thisUser.id}">
+		<h4>Following:</h4>
+		<div class="followingList">
+			<div class="noFollowing" th:if="${thisUser.friends.size() == 0}">
+				<p>You are not following anyone!</p>
+				<p><i>Find user profile links on event pages to follow them</i></p>
+			</div>
+			<div th:each="friend: ${thisUser.friends}">
+				<div class="oneFollowedUser">
+					<a class="followingName" th:href="|/user/${friend.id}|" th:text="|${friend.firstName} ${#strings.substring(friend.lastName, 0, 1)}.|"></a>
+					<form th:action="@{'/user/' + ${friend.id} + '/unfollow'}" th:method="delete">
+						<input class="removeButton" type="submit" value="Remove">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

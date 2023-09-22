@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/newEvent.css}" />
+</head>
+<style>
+	.formError {
+		color: #F40009;
+	}
+</style>
+
+<body>
+	<div class="homeButton">
+		<a href="/dashboard">
+		<img class="homeIcon" src="https://cdn-icons-png.flaticon.com/512/3081/3081162.png" 
+			alt="https://www.flaticon.com/free-icons/bubble-tea iconixar - Flaticon"/>
+		</a>
+	</div>
+	<!-- logged in display -->
+	<div class="loggedInDisplay" th:if="${session.userId}">
+		<p th:text="|${session.userName}|"></p>
+		<a th:href="'/user/' + ${session.userId}">your profile</a>
+		<div>
+			<a href="/logout">sign out</a>
+		</div>
+	</div>
+	<!-- Title -->
+	<div class="title">
+		<h1>Boba Buddies</h1>
+	</div>
+	<!-- navigation bar -->
+	<div class="navContainer">
+		<div class="nav">
+			<a href="/events/all/1"><button>all events</button></a>
+			<a th:href="'/events/user/' + ${session.userId}"><button>your events</button></a>
+			<a href="/events/new"><button>(+) create event</button></a>
+		</div>
+	</div>
+	<h3 th:text="|Update '${event.name}'|"></h3>
+	<div id="newEventForm">
+		<form th:action="@{/events/new}" th:object="${event}" method="post">
+			<input type="hidden" name="user" id="user" th:value="${session.userId}"/>
+		    <div class="formSection">
+			    <div class="formDiv">
+				    <label for="name">Event Name</label>
+					<div><input type="text" th:field="*{name}" id="name" placeholder="Event name"></div>
+				    <div class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+			    </div>
+		    </div>
+		    <div class="formSection">
+		    <div class="formDiv">
+			    <label for="location">Location</label>
+			    	<div>
+			    		<select th:field="*{location}" id="location">
+					    	<option th:each="location : ${locations}" th:value="${location.id}"
+					    	th:text="${location.name} + ' (' + ${location.city} + ', ' + ${location.state} + ')'"></option>
+					    </select>
+				    </div>
+				    <div class="formError" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+				</div>
+			</div>
+			<div class="formSection">
+				<div class="formDiv">
+					<label for="dateTime">Date / Start Time</label>
+					<div><input type="datetime-local" th:field="*{dateTime}" id="dateTime"></div>
+					<div class="formError" th:if="${#fields.hasErrors('dateTime')}" th:errors="*{dateTime}"></div>
+				</div>
+			</div>
+			<div class="formSection">
+				<div class="formDiv">
+					<label for="endTime">End Time</label>
+					<div><input type="time" th:field="*{endTime}" id="endTime"></div>
+					<div class="formError" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></div>
+				</div>
+			</div>
+			<div class="formSection">
+			    <div class="formDiv">
+			    	<label for="description">Description</label>
+					<div><textarea class="description" th:field="*{description}" id="description"></textarea></div>
+					<div class="formError" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+		    	</div>
+			</div>
+			    
+		    <div class="submit">
+		    	<input class="submitButton" type="submit" value="Submit">
+		    </div>
+		</form>
+    </div>
+    <div class="submit">
+    	<form th:action="@{'/events/' + ${event.id}}" th:method="delete">
+			<input class="deleteButton" type="submit" value="Delete Event">
+		</form>
+	</div>
+</body>
+</html>

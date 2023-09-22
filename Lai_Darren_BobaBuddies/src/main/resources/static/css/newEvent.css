@@ -1,0 +1,189 @@
+* {
+	margin:0;
+	padding:0;
+}
+a:link, a:visited {
+	color: #603101;
+}
+a:hover {
+	color: #BF8445; 
+}
+
+.homeButton {
+	position:fixed;
+	top:0px;
+}
+.homeIcon {
+	width: 55px;
+	margin-top:5px;
+}
+.loggedInDisplay {
+  	text-align:right;
+  	position:fixed;
+  	top:5px;
+  	right:10px;
+  	font-family: system-ui, sans-serif;
+  	font-weight:600;
+  	font-size:13px;
+}
+h1 {
+	font-family: "Comic Sans MS", sans-serif;
+}
+.title {
+  		text-align:center;
+  		margin-bottom:10px;
+  		margin-top:8vh;
+  	}
+h3 {
+	font-family:"Helvetica", sans-serif;
+	margin-bottom:10px;
+	text-align:center;
+}
+.navContainer, .yourNavContainer {
+	display:flex;
+	justify-content:center;
+	margin:auto;
+	margin-bottom:15px;
+}
+.yourNavContainer {
+	width:60%;
+}
+.nav {
+	display:flex;
+	/* justify-content:space-between; */
+	width:100%;
+}
+.nav a {
+	width:33.33%;
+}
+.nav button {
+  background-color: #603101;
+  border: 1px solid #dfc2a2;
+  color: #dfc2a2;
+  padding: 5px 6px;
+  width:100%;
+  cursor: pointer;
+  float: left;
+  font-weight:bold;
+}
+.nav button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.nav:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.nav button:hover {
+  background-color: #dfc2a2;
+  color: #603101;
+  transition:0.3s;
+}
+#newEventForm {
+	border: solid 2px darkgray;
+	border-radius: 9px;
+	padding-top: 2vh;
+	padding-bottom: 0;
+	width: 92vw;
+	margin: auto;
+	background-color:#dfc2a2;
+}
+.formSection {
+	margin-bottom: 8px;
+}
+
+.formDiv, .formError {
+	width: 80%;
+	margin: auto;
+	justify-content: space-between;
+	align-items: center;
+	font-family: system-ui, sans-serif;
+}
+.required {
+	font-size:14px;
+}
+
+.formError {
+	width:100%;
+	color: #F40009;
+	display: flex;
+	justify-content: left;
+	text-align: right;
+	font-size: 13px;
+	font-weight: 500;
+	font-family: system-ui, sans-serif;
+}
+
+label {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.textInput {
+	height: 20px;
+}
+.description {
+	width: 100%;
+	height:92px;
+}
+.submit {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+.submitButton, .deleteButton {
+	align-items: center;
+	background-color: #C4A484;
+	border: 2px solid #987654;
+	border-radius: 100px;
+	box-sizing: border-box;
+	color: black;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto,
+		"Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans",
+		Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 20px;
+	max-width: 480px;
+	min-height: 30px;
+	min-width: 0px;
+	overflow: hidden;
+	padding: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: center;
+	touch-action: manipulation;
+	transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+		box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s
+		cubic-bezier(0.4, 0, 0.2, 1) 0s;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
+}
+
+.submitButton:hover, .submitButton:focus {
+	background-color:#987654;
+	text-decoration: none;
+	transition-duration: 0.3s;
+}
+
+.deleteButton {
+	margin-top:10px;
+	background-color: #E31837;
+	border:none;
+	color: white;
+}
+
+.deleteButton:hover, .deleteButton:focus {
+	background-color:red;
+	text-decoration: none;
+	transition-duration: 0.3s;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<style>
+	.formError {
+		color: #F40009;
+	}
+</style>
+
+<body>
+	<h1>Boba Buddies</h1>
+	<div>
+	<a href="/events/new"><button>Create Event</button></a>
+	<a href="/events"><button>View All Events</button></a>
+	</div>
+	<div id="newEventForm">
+		<form th:action="@{/events/new}" th:object="${event}" method="post">
+			<input type="hidden" name="user" id="user" th:value="${userId}"/>
+		    <div class="formDiv">
+		    	<label for="name" style="font-size:14px">Event Name</label>
+				<input type="text" th:field="*{name}" id="name" placeholder="Event name">
+			</div>
+		    <div class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+		    <div class="formDiv">
+			    <label for="location">Location</label>
+			    <select th:field="*{location}" id="location">
+			    	<option th:each="location : ${locations}" th:value="${location.id}"
+			    	th:text="${location.name} + ' (' + ${location.city} + ', ' + $(location.state) + ')'"></option>
+			    </select>
+			</div>
+			<div class="formError" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+			<div class="formDiv">
+				<label for="date">Date</label>
+				<input type="date" th:field="*{date}" id="date">
+			</div>
+			<div class="formError" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+			<div class="formDiv">
+				<label for="startTime">Start Time</label>
+				<input type="time" th:field="*{startTime}" id="startTime">
+			</div>
+			<div class="formError" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></div>
+			<div class="formDiv">
+				<label for="endTime">End Time</label>
+				<input type="time" th:field="*{endTime}" id="endTime">
+			</div>
+			<div class="formError" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></div>
+		    <div class="formDiv">
+		    	<label for="description">Description</label>
+				<textarea th:field="*{description}" id="description"></textarea>
+		    </div>
+		    <div class="formError" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+		    <div class="submit">
+		    	<input type="submit" value="Register">
+		    </div>
+		</form>
+    </div>
+</body>
+</html>

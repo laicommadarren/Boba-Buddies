@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/dashboard.css}" />
+</head>
+
+<body>
+	<!--  Home Button -->
+	<div class="homeButton">
+		<a href="/dashboard">
+		<img class="homeIcon" src="https://cdn-icons-png.flaticon.com/512/3081/3081162.png" 
+			alt="https://www.flaticon.com/free-icons/bubble-tea iconixar - Flaticon"/>
+		</a>
+	</div>
+	<!-- logged in display -->
+	<div class="loggedInDisplay" th:if="${session.userId}">
+		<p th:text="|${session.userName}|"></p>
+		<a th:href="'/user/' + ${session.userId}">your profile</a>
+		<div>
+			<a href="/logout">sign out</a>
+		</div>
+	</div>
+	<!-- Title -->
+	<div class="title">
+		<h1>Boba Buddies</h1>
+	</div>
+	<!-- navigation bar -->
+	<div class="navContainer">
+		<div class="nav">
+			<a href="/events/all/1"><button>all events</button></a>
+			<a th:href="'/events/user/' + ${session.userId}"><button>your events</button></a>
+			<a href="/events/new"><button>(+) create event</button></a>
+		</div>
+	</div>
+	<!--  welcome message -->
+	<h3 th:text="'Welcome, ' + ${user.firstName}"></h3>
+	<!-- events display -->
+	<div class="eventsContainer">
+		<div class="eventColumn">
+			<div class="eventColumnHeader">
+				<h4 >your upcoming events</h4>
+			</div>
+			<div class="eventBox" th:if="${user.events.size() == 0}">You have no upcoming events!</div>
+			<div class="eventBox" th:each="event, iteration : ${user.events}" th:if="${iteration.index} < 2">
+				<p class="eventTitle" th:text="${event.name}"></p>
+				<p th:text="${#temporals.format(event.dateTime, 'MMM dd, yyyy (EEE)')}"></p>
+				<p class="eventTime" th:text="${#temporals.format(event.dateTime, 'h:mm a')} +
+					' - ' + ${#dates.format(event.endTime, 'h:mm a')}"></p>
+				<p th:text="${event.location.name}"></p>
+				<p class="eventCity" th:text="${event.location.city}"></p>
+				<p th:text="${event.user.id == user.id} ? 'You are hosting' : 'hosted by: ' +
+					${event.user.firstName} + ' ' + ${#strings.substring(event.user.lastName, 0, 1)} + '.'" />
+				<a th:href="@{'/events/' + ${event.id}}"><b>view event</b></a>
+			</div>
+			<div class="eventBox" th:if="${user.events.size() > 2}"><p>...</p></div>
+			<a href="/events/all/1" th:if="${user.events.size() == 0}"><b>view all events</b></a>
+			<a th:href="'/events/user/' + ${session.userId}" 
+				th:if="${user.events.size() > 0}"><b>view all your events</b></a>
+		</div>
+		<div class="eventColumn">
+			<div class="eventColumnHeader">
+				<h4>events you're hosting</h4>
+			</div>
+			<div class="eventBox" th:if="${events.size() == 0}">You are not hosting any events!</div>
+			<div class="eventBox" th:each="event, iteration : ${events}" th:if="${iteration.index} < 2">
+				<p class="eventTitle" th:text="${event.name}"></p>
+				<p th:text="${#temporals.format(event.dateTime, 'MMM dd, yyyy (EEE)')}"></p>
+				<p class="eventTime" th:text="${#temporals.format(event.dateTime, 'h:mm a')} +
+					' - ' + ${#dates.format(event.endTime, 'h:mm a')}"></p>
+				<p th:text="${event.location.name}"></p>
+				<p class="eventCity" th:text="${event.location.city}"></p>
+				<p th:text="${event.user.id == user.id} ? 'You are hosting' : 'hosted by: ' +
+					${event.user.firstName} + ' ' + ${#strings.substring(event.user.lastName, 0, 1)} + '.'" />
+				<a th:href="@{'/events/' + ${event.id}}"><b>view event</b></a>
+			</div>
+			<div class="eventBox" th:if="${events.size() > 2}"><p>...</p></div>
+			<a th:href="'/events/user/' + ${session.userId}" th:if="${events.size() > 0}">
+				<b>view all your events</b>
+			</a>
+			<a href="/events/new" th:if="${events.size() == 0}">
+				<b>host an event</b>
+			</a>
+		</div>
+	</div>
+	
+</body>
+</html>

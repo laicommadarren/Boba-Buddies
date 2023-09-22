@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</head>
+<style>
+	.formError {
+		color: #F40009;
+	}
+</style>
+
+<body>
+	<h1>Boba Buddies</h1>
+	<div>
+	<a href="/events/new"><button>Create Event</button></a>
+	<button>All Events</button>
+	</div>
+	<div th:each="event: ${events}">
+		<p th:text="${event.date}"></p>
+		<p th:text="${event.startTime} + ' to ' + ${event.endTime}"></p>
+		<p th:text="${event.location.name}"></p>
+		<p th:text="${event.location.city}"></p>
+		<p th:text="'hosted by: ' + ${event.user.firstName}"></p>
+		<a th:href="@{'/events/' + ${event.id}}">view event</a>
+	</div>
+	
+	<div id="events">
+	    <h1>Events</h1>
+	    <div th:each="index: ${totalPages}">
+	    	<a href="@{'/pages/' + (${index}+1)}">${index}</a>
+	    <table class="table">
+			<thead>
+				<tr>
+					<th>First Name</th>
+	           		<th>Last Name</th>
+	           	</tr>
+	        </thead>
+	        <tbody>
+	            // we have to call the .content method to actually get the ninjas inside the Page iterable.
+	            <div th:each="support attribute from-rainbow" >var="ninja" items="${ninjas.content}">
+	            <tr th:each class="support tag from-rainbow">              
+	            <tr>
+	                <td><c:out value="${ninja.firstName}"></c:out></td>
+	                <td><c:out value="${ninja.lastName}"></c:out></td>
+	            </tr>
+	            </c:forEach>
+	        </tbody>
+	    </table>
+    </div>
+    
+    // for loop to create all the links
+    <c:forEach begin="1" end="${totalPages}" var="index">
+        <a href="/pages/${index}">${index}</a>
+    </c:forEach>
+    <table class="table">
+        class="support tag from-rainbow"><thead>
+            -rainbow"><th>First Name</th>
+            ="support tag from-rainbow"><th>Last Name</th>
+        </thead>
+        <tbody>
+            // we have to call the .content method to actually get the ninjas inside the Page iterable.
+            <c:forEach ="support attribute from-rainbow">var="ninja" items="${ninjas.content}">                 
+            <tr>
+                <td><c:out value="${ninja.firstName}"></c:out></td>
+                <td><c:out value="${ninja.lastName}"></c:out></td>
+            </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

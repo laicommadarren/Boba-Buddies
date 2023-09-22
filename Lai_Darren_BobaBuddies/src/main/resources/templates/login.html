@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>Boba Buddies</title>
+  <link rel="stylesheet" type="text/css" th:href="@{css/login.css}" />
+  
+  
+</head>
+
+<body>
+	<div class="homeButton">
+		<a href="/dashboard">
+		<img class="homeIcon" src="https://cdn-icons-png.flaticon.com/512/3081/3081162.png" 
+			alt="https://www.flaticon.com/free-icons/bubble-tea iconixar - Flaticon"/>
+		</a>
+	</div>
+	<div class="loggedInDisplay" th:if="${session.userId}">
+		<p th:text="|logged in as ${session.userName}|"></p>
+		<a href="/dashboard">go to your dashboard</a>
+		<div class="flexDiv">
+			<p class="adjustPTag" th:text="|not ${session.userFirstName}?|"></p>
+			<a href="/logout">sign out</a>
+		</div>
+	</div>
+	<div class="sallyContainer">
+		<img class="sallyImage" src="https://i.imgur.com/tZtc7fP.png" width="40%"></img>
+	</div>
+	<div class="title">
+	<h1>Boba Buddies</h1>
+	<p class="titleMessage">Meet and network with other boba enthusiasts!</p>
+	</div>
+	<div class="regLogButtonContainer">
+		<button class="regLogButton" th:onclick="showRegister()">Register</button>
+		<p class="or">or</p> 
+		<button class="regLogButton" th:onclick="showLogin()">Login</button>
+	</div>
+	<a class="extraMessage" href="/events/all/1">or check out upcoming events</a>
+	<div id="registerForm">
+		<form th:action="@{/register}" th:object="${newUser}" method="post">
+		    <div class="formSection">
+			    <div class="formDiv">
+			    	<label for="firstName" style="font-size:14px">First Name</label>
+					<input class="textInput" type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+				</div>
+			    <div class="formError" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+		    </div>
+		    <div class="formSection">
+			    <div class="formDiv">
+				    <label for="lastName">Last Name</label>
+				    <input class="textInput" type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+				</div>
+				<div class="formError">
+			    	<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+			    </div>
+			</div>
+			<div class="formSection">
+			    <div class="formDiv">
+				    <label for="email">Email</label>
+				    <input class="textInput" type="text" th:field="*{email}" id="email" placeholder="Email">
+				</div>
+		    	<div class="formError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		    </div>
+			<div class="formSection">
+			    <div class="formDiv">
+					<label for="password">Password</label>
+					<input class="textInput" type="password" th:field="*{password}" id="password" placeholder="Password">
+				</div>
+				<div class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+		    </div>
+		    <div class="formSection">
+			    <div class="formDiv">
+					<label for="confirm"> Confirm Password</label>
+					<input class="textInput" type="password" th:field="*{confirm}" id="confirm" placeholder="Confirm Password">
+				</div>
+				<div class="formError" th:if="${#fields.hasErrors('confirm')}" th:errors="*{confirm}"></div>
+		    </div>
+		    <div class="submit">
+		    	<input class="submitButton" type="submit" value="Register">
+		    </div>
+		</form>
+    </div>
+    <div id="loginForm">
+		<form th:action="@{/login}" th:object="${newLogin}" method="post">
+		    <div class="formSection">
+		    	<div class="formDiv">
+			        <label for="email">Email</label>
+			        <input class="textInput" type="text" th:field="*{email}" id="email" placeholder="Email">
+			    </div>
+		        <div class="formError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		    </div>
+		    <div class="formSection">
+		    	<div class="formDiv">
+			        <label for="password">Password</label>
+			        <input class="textInput" type="password" th:field="*{password}" id="password" placeholder="Password">
+			    </div>
+		        <div class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+		    </div>
+		    <div class="submit">
+		    	<input class="submitButton" type="submit" value="Login">
+		    </div>
+		</form>
+    </div>
+<script type="text/javascript" th:src="@{script.js}"></script>
+</body>
+</html>
