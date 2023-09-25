@@ -75,7 +75,7 @@ On others' pages, allows logged in user to follow the respective user.
 
 ## Preview
 
-to be added
+[Demo](https://youtu.be/WvSD9MsWFtc)
 
 ## License
 
