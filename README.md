@@ -85,6 +85,7 @@ If user joined the event, allows user to see and post comments.
 On own page, the user can see a list of which users they are following.
 
 On others' pages, allows logged in user to follow the respective user.
+
 <img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/6cc3d52e-cc36-4372-8a20-74bbeaed1c5e" width="300" />
 
 <img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/2973d6b8-81f6-4d77-b680-4df60f169743" width="300" />
