@@ -28,12 +28,14 @@ to be completed
 
 Landing page that allows a user to register/login, or view all events
 
+![Screenshot_4](https://github.com/laicommadarren/Boba-Buddies/assets/132854811/ef1b2360-097a-427b-808b-1bbb38515ebc)
+![Screenshot_5](https://github.com/laicommadarren/Boba-Buddies/assets/132854811/5a380694-aaa7-4202-8642-38988eb76554)
+![Screenshot_6](https://github.com/laicommadarren/Boba-Buddies/assets/132854811/7a6c590d-234c-4b7d-afa4-f518c9facaf1)
+
+
 ### Home Button (top left)
 
 If user is logged in, will redirect to the dashboard. If no user is logged in, redirects to the landing page.
-
-![image](Video Screenshots/Screenshot_4.png)
-![image](https://raw.githubusercontent.com/laicommadarren/Boba-Buddies/main/Video Screenshots/Screenshot_4.png)
 
 ### Login Status (top right)
 
