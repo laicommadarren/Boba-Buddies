@@ -32,6 +32,8 @@ Landing page that allows a user to register/login, or view all events
 
 If user is logged in, will redirect to the dashboard. If no user is logged in, redirects to the landing page.
 
+[image]("Video Screenshots"/Screenshot_4)
+
 ### Login Status (top right)
 
 If user is logged in, will display user's name and show links to the user's profile and to log out.
