@@ -48,17 +48,25 @@ Allows user to navigate to pages for all events, user's events, and create event
 
 Shows up to 2 upcoming events that the user has joined, and 2 upcoming events that the user has hosted. (These may overlap).
 
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/d5faad71-21bb-4d85-8a3d-fe59a3e0a67f" width="300" />
+
 ### All Events
 
 Shows all events, with pagination showing 5 per page. Current page will be highlighted in the page bar.
+
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/215cd389-454a-45e2-94a4-fb1431186a58" width="300" />
 
 ### Your Events
 
 Shows all of user's joined events, or events the user is hosting depending on which section is selected.
 
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/d0e4eaa4-589e-49cc-9cc0-8cf8128a6e27" width="300" />
+
 ### Create Event
 
 Allows user to create an event.
+
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/17f415a5-e00f-4305-8917-b602bb2c26d6" width="300" />
 
 ### Event Page
 
@@ -70,12 +78,16 @@ If user is the host, allows user to edit the event.
 
 If user joined the event, allows user to see and post comments.
 
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/9e6df1b8-1ceb-4448-a0dd-60c324746708" width="300" />
+
 ### Profile Page
 
 On own page, the user can see a list of which users they are following.
 
 On others' pages, allows logged in user to follow the respective user.
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/6cc3d52e-cc36-4372-8a20-74bbeaed1c5e" width="300" />
 
+<img src="https://github.com/laicommadarren/Boba-Buddies/assets/132854811/2973d6b8-81f6-4d77-b680-4df60f169743" />
 
 ## Preview
 
