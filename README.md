@@ -32,7 +32,7 @@ Landing page that allows a user to register/login, or view all events
 
 If user is logged in, will redirect to the dashboard. If no user is logged in, redirects to the landing page.
 
-[image](Video Screenshots/Screenshot_4)
+[image](Video Screenshots/Screenshot_4.png)
 
 ### Login Status (top right)
 
