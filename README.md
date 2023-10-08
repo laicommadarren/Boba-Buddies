@@ -20,7 +20,7 @@ This app is suitable for people who may not typically be adventurous with trying
 
 ## Installation
 
-to be completed
+to be completed 
 
 ## Features
 
